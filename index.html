@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <head>
     <meta charset="UTF-8">
     <title>游泳课简介</title>
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
         #date{
             width: 100%;
-            height: 8rem;
+            height: 3rem;
             color: #999999;
-            line-height: 8rem;
+            line-height: 3rem;
             background: #1A1A1d;
         }
         #today{
-            font-size: 2em;
+            font-size: 0.6em;
             margin-left: 5%;
             display: inline-block;
         }
         #tab{
-            font-size: 2.5em;
-            margin-left: 33%;
+            margin-left: 30%;
             display: inline-block;
         }
         #tab div{
-            height: 6rem;
-            border-bottom: 0.8rem solid yellow;
+            height: 2.3rem;
+            border-bottom: 0.3rem solid #1A1A1d;
             display: inline-block;
         }
+        #tab div:nth-child(1){
+            color: yellow;
+            border-bottom: 0.3rem solid yellow;
+        }
+        #train,#individual{
+            width: 100%;
+            position: absolute;
+            min-height: 15rem;
+        }
         #train{
-
+            z-index: 100;
+            background: red;
         }
         #individual{
-
+            background: aqua;
         }
     </style>
 </head>
@@ -38,7 +52,7 @@
 <!--日期显示-->
 <div id="date">
     <div id="today">今天：</div>
-    <div id="tab"><div>团 课</div>&nbsp&nbsp&nbsp<div>私 教</div></div>
+    <div id="tab"><div onclick="train(this)">团 课</div>&nbsp&nbsp&nbsp<div onclick="individual(this)">私 教</div></div>
 </div>
 <!--tab切换div-->
 <div id="train">
@@ -54,33 +68,56 @@
     let month = today.getMonth() + 1;
     let day = today.getDate();
     let toDday = document.getElementById('today');
+    let trainDom = document.getElementById('train');
+    let individualDom = document.getElementById('individual');
 
     toDday.innerHTML = "今天：" + month + "月" + day + "日" + " 星期" + toWeek(week);
 
+
+    //切换为train
+    function train(e) {
+        e.style.color = "yellow";
+        e.style.borderBottom = "0.3rem solid yellow";
+        trainDom.style.zIndex = 100;
+        individualDom.style.zIndex = 0;
+        e.parentNode.childNodes[2].style.color = "#999999";
+        e.parentNode.childNodes[2].style.borderBottom = "0.3rem solid #1A1A1d";
+    }
+    //切换为train
+    function individual(e) {
+        e.style.color = "yellow";
+        e.style.borderBottom = "0.3rem solid yellow";
+        trainDom.style.zIndex = 0;
+        individualDom.style.zIndex = 100;
+        e.parentNode.childNodes[0].style.color = "#999999";
+        e.parentNode.childNodes[0].style.borderBottom = "0.3rem solid #1A1A1d";
+    }
     //获取大写的星期数
     function toWeek(week) {
         switch (week) {
             case 1:
-                return "一"
+                return "一";
                 break;
             case 2:
-                return "二"
+                return "二";
                 break;
             case 3:
-                return "三"
+                return "三";
                 break;
             case 4:
-                return "四"
+                return "四";
                 break;
             case 5:
-                return "五"
+                return "五";
                 break;
             case 6:
-                return "六"
+                return "六";
                 break;
             case 7:
-                return "日"
+                return "日";
                 break;
+            default:
+                return "非法日期";
         }
     }
 </script>

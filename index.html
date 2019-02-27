@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>游泳课简介</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_633931_zz1xjqeb83b.css">
     <style>
         *{
             padding: 0;
@@ -45,7 +46,17 @@
         }
         #datelist{
             height: 3rem;
+            color: #5e6149;
+            line-height: 3rem;
             background: #1A1A1d;
+        }
+        #datelist span{
+            width: 2rem;
+            height: 2rem;
+            text-align: center;
+            line-height: 2.4rem;
+            display: inline-block;
+            margin-left: 3.1%;
         }
         #individual{
             display: none;
@@ -62,7 +73,7 @@
 <!--tab切换div-->
 <div id="train">
     <div id="datelist">
-        <input type="date">
+
     </div>
 </div>
 <div id="individual">
@@ -77,9 +88,39 @@
     let toDday = document.getElementById('today');
     let trainDom = document.getElementById('train');
     let individualDom = document.getElementById('individual');
+    let datelist = document.getElementById('datelist');
+    let touchStart = 0;
+
 
     toDday.innerHTML = "今天：" + month + "月" + day + "日" + " 星期" + toWeek(week);
+    let currentDate = today;
+    let num = 1;
+    drawWeek(currentDate,num);
 
+    trainDom.addEventListener("touchstart", function (e) {
+        touchStart = e.changedTouches[0].pageX;
+        console.log(touchStart)
+    });
+    trainDom.addEventListener("touchend", function (e) {
+        console.log(e.changedTouches[0].pageX)
+        if (e.changedTouches[0].pageX - touchStart < 0) {//右划
+            num++;
+            drawWeek(currentDate,num);
+        }
+    });
+    //绘制星期
+    function drawWeek(today,n){
+        let str = "";
+        for (let i = 0; i < 7;i++){
+            if ((n-1) == i){
+                str += "<span style='font-size: 0.4em;border: 0.2rem solid yellow;padding: 0.2rem;border-radius: 50%;'>" + "<i style='color: #ffffff;font-style: normal;'>"+ parseInt(new Date(today.getFullYear(),today.getMonth(),parseInt(today.getDate()+(n-1))).getMonth()+1) + "-" + new Date(today.getFullYear(),today.getMonth(),parseInt(today.getDate()+(n-1))).getDate() +"</i></span>";
+            } else {
+                str += "<span>" + toWeek((today.getDay() + i) % 7) + "</span>";
+            }
+        }
+        str += '<span class=\"iconfont icon-rili\"></span>';
+        datelist.innerHTML = str;
+    }
 
     //切换为train
     function train(e) {
@@ -102,6 +143,9 @@
     //获取大写的星期数
     function toWeek(week) {
         switch (week) {
+            case 0:
+                return "日";
+                break;
             case 1:
                 return "一";
                 break;

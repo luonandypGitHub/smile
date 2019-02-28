@@ -60,7 +60,7 @@
         }
         #individual{
             display: none;
-            background: aqua;
+            /*background: aqua;*/
         }
     </style>
 </head>
@@ -72,12 +72,12 @@
 </div>
 <!--tab切换div-->
 <div id="train">
-    <div id="datelist">
-
-    </div>
+    团课图片
 </div>
 <div id="individual">
-    私教
+    <div id="indId">
+        
+    </div>
 </div>
 </body>
 <script>
@@ -88,39 +88,8 @@
     let toDday = document.getElementById('today');
     let trainDom = document.getElementById('train');
     let individualDom = document.getElementById('individual');
-    let datelist = document.getElementById('datelist');
-    let touchStart = 0;
-
 
     toDday.innerHTML = "今天：" + month + "月" + day + "日" + " 星期" + toWeek(week);
-    let currentDate = today;
-    let num = 1;
-    drawWeek(currentDate,num);
-
-    trainDom.addEventListener("touchstart", function (e) {
-        touchStart = e.changedTouches[0].pageX;
-        console.log(touchStart)
-    });
-    trainDom.addEventListener("touchend", function (e) {
-        console.log(e.changedTouches[0].pageX)
-        if (e.changedTouches[0].pageX - touchStart < 0) {//右划
-            num++;
-            drawWeek(currentDate,num);
-        }
-    });
-    //绘制星期
-    function drawWeek(today,n){
-        let str = "";
-        for (let i = 0; i < 7;i++){
-            if ((n-1) == i){
-                str += "<span style='font-size: 0.4em;border: 0.2rem solid yellow;padding: 0.2rem;border-radius: 50%;'>" + "<i style='color: #ffffff;font-style: normal;'>"+ parseInt(new Date(today.getFullYear(),today.getMonth(),parseInt(today.getDate()+(n-1))).getMonth()+1) + "-" + new Date(today.getFullYear(),today.getMonth(),parseInt(today.getDate()+(n-1))).getDate() +"</i></span>";
-            } else {
-                str += "<span>" + toWeek((today.getDay() + i) % 7) + "</span>";
-            }
-        }
-        str += '<span class=\"iconfont icon-rili\"></span>';
-        datelist.innerHTML = str;
-    }
 
     //切换为train
     function train(e) {
@@ -131,7 +100,7 @@
         e.parentNode.childNodes[2].style.color = "#999999";
         e.parentNode.childNodes[2].style.borderBottom = "0.3rem solid #1A1A1d";
     }
-    //切换为train
+    //切换为individual
     function individual(e) {
         e.style.color = "yellow";
         e.style.borderBottom = "0.3rem solid yellow";

@@ -79,7 +79,7 @@
 
     toDday.innerHTML = "今天：" + month + "月" + day + "日" + " 星期" + toWeek(week);
 
-    {
+    (function () {
         //编写课程
         for (let i = 0;i < classes.length;i++){
             str += "<div style='background: #fff;padding: 0.5rem;margin-top: 0.5rem;' onclick='indivDetil(this)'>";
@@ -88,9 +88,8 @@
             str += "</div>";
         }
         individualDom.innerHTML = str;
-    }
-
-
+    })();
+    
     function indivDetil(item) {
         let arr = item.parentNode.childNodes;
         for (let i = 0;i < arr.length;i++){

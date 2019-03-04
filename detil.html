@@ -2,20 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <script src="data.js"></script>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_633931_yed3rq2q6.css">
     <title>课程详情</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #classdetil{
+            min-height: 20rem;
+            background: #F1F1F1;
+            padding: 0.5rem;
+        }
+    </style>
 </head>
 <body>
-
+    <div id="classes">请选择课程</div>
+    <div id="classdetil">课程详情</div>
 </body>
 <script>
-    function GetUrlPara()
-    {
+    let string = GetUrlPara();
+    let arr = string.split('=');
+    let course = document.querySelector("#classes");
+    let detil = document.querySelector("#classdetil");
+    let str = "";
+    console.log(arr[1]);
+    document.querySelector("title").innerHTML = classes[arr[1]].name + "课程详情--斯迈尔体育";
+
+    str += "<img src='" + classes[arr[1]].imglist[0] + "' style='width: 100%;height: 13rem;' />";
+    course.innerHTML = str;
+
+    str = "";
+    str += "<div style='background: #fff;padding: 0.5rem;'><i class='iconfont icon-wendang1' style='font-size: 0.8em;'></i> <h4 style='display: inline-block'>课程简介</h4><p style='font-size: 0.8em;padding:0.5rem 0;border-bottom: 0.1rem dashed #888'>"+ classes[arr[1]].introduce +"</p></div>";
+    str += "<div style='margin-top: 0.5rem;background: #fff;'><div style='padding: 0.5rem;font-size:0.8em;'><span class='iconfont icon-shijianzhongbiao' style='font-size: 0.7em;'></span> <span>课时时长 "+ classes[arr[1]].time +"</span></div><hr style='margin: auto;width: 95%'><div style='padding: 0.5rem;font-size:0.8em;'><span class='iconfont icon-renqungailan3' style='font-size: 0.7em;'></span> <span>授课对象 "+ classes[arr[1]].obj +"</span></div><hr style='margin: auto;width: 95%'><a href='tel:13764567708' style='padding: 0.5rem;text-decoration:none;color:#000;display:block;font-size:0.8em;'><span class='iconfont icon-dianhua' style='font-size: 0.7em;'></span> <span>"+ classes[arr[1]].phone +" (轻触咨询)</span></a></div>";
+    detil.innerHTML = str;
+
+    //获取当前参数
+    function GetUrlPara() {
         var url = document.location.toString();
         var arrUrl = url.split("?");
 
         var para = arrUrl[1];
         return para;
     }
-    console.log(GetUrlPara());
 </script>
 </html>

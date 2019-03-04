@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>游泳课简介</title>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_633931_zz1xjqeb83b.css">
+    <script src="data.js"></script>
     <style>
         *{
             padding: 0;
@@ -44,23 +45,9 @@
         #train{
 
         }
-        #datelist{
-            height: 3rem;
-            color: #5e6149;
-            line-height: 3rem;
-            background: #1A1A1d;
-        }
-        #datelist span{
-            width: 2rem;
-            height: 2rem;
-            text-align: center;
-            line-height: 2.4rem;
-            display: inline-block;
-            margin-left: 3.1%;
-        }
         #individual{
             display: none;
-            /*background: aqua;*/
+            background: #F2F2F2;
         }
     </style>
 </head>
@@ -76,7 +63,7 @@
 </div>
 <div id="individual">
     <div id="indId">
-        
+
     </div>
 </div>
 </body>
@@ -88,9 +75,28 @@
     let toDday = document.getElementById('today');
     let trainDom = document.getElementById('train');
     let individualDom = document.getElementById('individual');
+    let str = "";
 
     toDday.innerHTML = "今天：" + month + "月" + day + "日" + " 星期" + toWeek(week);
 
+    //编写课程
+    for (let i = 0;i < classes.length;i++){
+        str += "<div style='background: #fff;padding: 0.5rem;margin-top: 0.5rem;' onclick='indivDetil(this)'>";
+        str += "<p style='font-weight: bold'>"+classes[i].name + "</p>";
+        str += "<br/> <div style='border-bottom: 0.05rem dashed #888;padding-bottom: 0.5rem;position: relative;'><span style='font-size: 0.9em'>简介</span> <span style='display: inline-block;width: 86%;vertical-align: top;color: #888;font-size: 0.8em;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;' >" + classes[i].introduce +"</span><span style='position: absolute;font-size: 1.5em;right: 1rem;top: 1.5rem;color: #888;'> > </span></div>";
+        str += "</div>";
+    }
+    individualDom.innerHTML = str;
+
+    function indivDetil(item) {
+        let arr = item.parentNode.childNodes;
+        for (let i = 0;i < arr.length;i++){
+            if (arr[i] == item){
+                location.href = "detil.html?ind=" + i;
+            }
+        }
+
+    }
     //切换为train
     function train(e) {
         e.style.color = "yellow";

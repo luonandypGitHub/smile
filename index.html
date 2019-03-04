@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>游泳课简介</title>
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_633931_zz1xjqeb83b.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_633931_wn1839703cq.css">
     <script src="data.js"></script>
     <style>
         *{
@@ -83,7 +83,12 @@
     for (let i = 0;i < classes.length;i++){
         str += "<div style='background: #fff;padding: 0.5rem;margin-top: 0.5rem;' onclick='indivDetil(this)'>";
         str += "<p style='font-weight: bold'>"+classes[i].name + "</p>";
-        str += "<br/> <div style='border-bottom: 0.05rem dashed #888;padding-bottom: 0.5rem;position: relative;'><span style='font-size: 0.9em'>简介</span> <span style='display: inline-block;width: 86%;vertical-align: top;color: #888;font-size: 0.8em;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;' >" + classes[i].introduce +"</span><span style='position: absolute;font-size: 1.5em;right: 1rem;top: 1.5rem;color: #888;'> > </span></div>";
+        str += "<br/> <div style='border-bottom: 0.05rem dashed #888;padding-bottom: 0.5rem;position: relative;'><span style='font-size: 0.9em'><i class='iconfont icon-wendang1' style='font-size: 0.8em;'></i> 简介</span> <span style='display: inline-block;width: 86%;vertical-align: top;color: #888;font-size: 0.8em;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;' >" + classes[i].introduce +"</span><span style='position: absolute;font-size: 1.5em;right: 1rem;top: 1.5rem;color: #888;'> > </span></div>";
+        str += "<div style='padding-top: 0.5rem;font-size: 0.9em;'><span class='iconfont icon-yonghu' style='height: 2rem;line-height: 2rem;display: inline-block;vertical-align: top;color: #888;'></span> <span style='height: 2rem;line-height: 2rem;display: inline-block;vertical-align: top;'>教练&nbsp</span>";
+        for (let j = 0; j < classes[i].coach.length;j++){
+            str += " <div style='display: inline-block;width: 2rem;height: 2rem;border-radius: 50%;'><img style='width: 100%;height: 100%;border-radius: 50%;' src='"+ coaches[classes[i].coach[j]].url +"' alt=''></div>";
+        }
+        str += "</div>";
         str += "</div>";
     }
     individualDom.innerHTML = str;

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程详情</title>
+</head>
+<body>
+
+</body>
+<script>
+    function GetUrlPara()
+    {
+        var url = document.location.toString();
+        var arrUrl = url.split("?");
+
+        var para = arrUrl[1];
+        return para;
+    }
+    console.log(GetUrlPara());
+</script>
+</html>

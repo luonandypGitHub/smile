@@ -51,4 +51,12 @@ let classes = [{
     phone:13430259980,
     imglist:["https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D250/sign=399ff7b7b099a9013f355c332d940a58/0d338744ebf81a4c77a0c76adf2a6059242da686.jpg"],
     coach:[2,3]
+},{
+    name: "英文",
+    introduce:["国际通用语言"],
+    time:"45分钟",
+    obj:"0岁~25岁以上",
+    phone:13430259980,
+    imglist:["https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D250/sign=399ff7b7b099a9013f355c332d940a58/0d338744ebf81a4c77a0c76adf2a6059242da686.jpg"],
+    coach:[2,3,1,0]
 }];
